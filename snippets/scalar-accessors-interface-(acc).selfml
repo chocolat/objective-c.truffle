@@ -1,0 +1,9 @@
+(name [Interface: Accessors for Primitive Type])
+
+(trigger
+    (tab acc))
+
+(only-in [source.objc meta.scope.interface, source.objc++ meta.scope.interface])
+
+(snippet [- (%{1="unsigned int"})%{2="thing"};
+- (void)set%{2/./\u$0/}:(%{1})new%{2/./\u$0/};])

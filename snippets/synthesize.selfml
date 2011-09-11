@@ -1,0 +1,8 @@
+(name [Synthesize Property])
+
+(trigger
+    (tab syn))
+
+(only-in [(source.objc | source.objc++) & meta.scope.implementation.objc - meta.function-with-body])
+
+(snippet [@synthesize %{1="property"};])

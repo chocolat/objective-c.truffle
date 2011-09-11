@@ -1,0 +1,10 @@
+(name [Category Implementation])
+
+(trigger
+    (tab catm))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [@implementation %{1="%{TM_FILENAME/.*?(\w+).*|.*/(?1:$1:NSObject)/}"} (%{2="%{TM_FILENAME/.*?\w+\W+(\w+).*\..+|.*/(?1:$1:Category)/}"})
+%{0}
+@end])

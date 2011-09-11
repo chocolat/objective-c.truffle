@@ -1,0 +1,8 @@
+(name [Detach New NSThread])
+
+(trigger
+    (tab thread))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [[NSThread detachNewThreadSelector:@selector(%{1="method"}:) toTarget:%{2="aTarget"} withObject:%{3="anArgument"}]])

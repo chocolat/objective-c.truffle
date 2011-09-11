@@ -1,0 +1,18 @@
+(name Object)
+
+(trigger
+    (tab objacc))
+
+(only-in [(source.objc | source.objc++) & meta.scope.implementation.objc - meta.function-with-body])
+
+(snippet [- (%{1="id"})%{2="thing"}
+{
+	return %{2};
+}
+
+- (void)set%{2/./\u$0/}:(%{1})aValue
+{
+	%{0}%{1/( \*)?$/(?1:$1: )/}old%{2/./\u$0/} = %{2};
+	%{2} = [aValue retain];
+	[old%{2/./\u$0/} release];
+}])

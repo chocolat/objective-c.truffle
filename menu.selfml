@@ -1,0 +1,15 @@
+(menu
+    (submenu [Language Boilerplate] [snippet.#import-<>-(imp)] [snippet.#import-""-(imp)] --- [snippet.020-class-(objc)] snippet.class-implementation [snippet.class-interface-only-(classi)] [snippet.category-(cat)] snippet.category-implementation [snippet.category-interface-only-(cati)] --- [snippet.050-method-(m)] [snippet.initialize-implementation-(i)] [snippet.class-method-(m)] [snippet.060-submethod-(sm)] --- [snippet.iboutlet-(ibo)])
+    (submenu [Accessor Methods For] snippet.property snippet.synthesize --- snippet.coredata-accessors-implementation [snippet.string-accessors-(stracc)] [snippet.090-object-accessors-(objacc)] [snippet.scalar-accessors-(acc)] --- [snippet.lod-array-(arracc)])
+    (submenu [Common Method Calls] [snippet.key-value-binding-(bind)] snippet.register-for-notification snippet.detach-new-nsthread --- [snippet.read-from-defaults-(getprefs)] [snippet.write-to-defaults-(setprefs)] --- [snippet.nslog-(log)-2] [snippet.nsrunalertpanel-(alert)])
+    (submenu [Object Instantiations] [snippet.030-nsarray-(array)] [snippet.040-nsdictionary-(dict)] [snippet.nsbezierpath-(bez)] [snippet.nsstring-stringwithformat-(format)])
+    (submenu Idioms [snippet.080-for-nsarray-loop-(forarray)] --- snippet.lock-focus [snippet.save-and-restore-graphics-context-(gsave)] [snippet.nsautoreleasepool-(pool)] --- snippet.responds-to-selector snippet.delegate-responds-to-selector)
+    [command.wrap-in-[[alloc]-init]-(alloc)]
+    command.insert-call-to-super
+    command.paste-selector
+    command.delete-outer-method
+    ---
+    snippet.@selector
+    ---
+    command.generate-index
+    [command.insert-nslog()-for-current-method])

@@ -1,0 +1,8 @@
+(name IBOutlet)
+
+(trigger
+    (tab ibo))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [IBOutlet %{1="NSSomeClass"}%{TM_C_POINTER=" *"}%{2="%{1/^[A-Z](?:[A-Z]+|[a-z]+)([A-Z]\w*)/\l$1/}"};])

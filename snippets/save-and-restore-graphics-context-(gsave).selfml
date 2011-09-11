@@ -1,0 +1,11 @@
+(name [Save and Restore Graphics Context])
+
+(trigger
+    (tab gsave))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [[NSGraphicsContext saveGraphicsState];
+%{0}
+[NSGraphicsContext restoreGraphicsState];
+])

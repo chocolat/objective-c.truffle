@@ -1,0 +1,8 @@
+(name [NSString With Format])
+
+(trigger
+    (tab format))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [[NSString stringWithFormat:@"%{1}", %{2}]%{0}])

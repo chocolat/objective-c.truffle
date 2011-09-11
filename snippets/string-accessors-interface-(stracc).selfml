@@ -1,0 +1,9 @@
+(name [Interface: Accessors for String])
+
+(trigger
+    (tab stracc))
+
+(only-in [source.objc meta.scope.interface, source.objc++ meta.scope.interface])
+
+(snippet [- (NSString%{TM_C_POINTER/(^(.+?)\s*$)?/(?1:$2: *)/})%{1="thing"};
+- (void)set%{1/./\u$0/}:(NSString%{TM_C_POINTER/(^(.+?)\s*$)?/(?1:$2: *)/})%{2="a%{1/.*/\u$0/}"};])

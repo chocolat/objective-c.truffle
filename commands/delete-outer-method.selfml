@@ -1,0 +1,16 @@
+(trigger
+    (key [[ctrl][cmd][backspace]]))
+
+(name [Delete Outer Method Call])
+
+(only-in meta.bracketed.objc)
+
+(input selection scope)
+
+(output replace-selected)
+
+(save nothing)
+
+(script `#!/usr/bin/env ruby -wKU
+print STDIN.read.sub(/\A\[(.*\])[^\]]*\]\z/, '\\1')
+`)

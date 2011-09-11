@@ -1,0 +1,15 @@
+(name [Interface: Accessors for KVC Array])
+
+(trigger
+    (tab arracc))
+
+(only-in [source.objc meta.scope.interface, source.objc++ meta.scope.interface])
+
+(snippet [- (void)addObjectTo%{1="Things"}:(%{2="id"})anObject;
+- (void)insertObject:(%{2})anObject in%{1}AtIndex:(unsigned int)i;
+- (%{2})objectIn%{1}AtIndex:(unsigned int)i;
+- (unsigned int)indexOfObjectIn%{1}:(%{2})anObject;
+- (void)removeObjectFrom%{1}AtIndex:(unsigned int)i;
+- (unsigned int)countOf%{1};
+- (NSArray%{TM_C_POINTER/(^(.+?)\s*$)?/(?1:$2: *)/})%{1/./\l$0/};
+- (void)set%{1}:(NSArray%{TM_C_POINTER/(^(.+?)\s*$)?/(?1:$2: *)/})new%{1};])

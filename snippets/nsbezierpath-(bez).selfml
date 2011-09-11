@@ -1,0 +1,9 @@
+(name NSBezierPath)
+
+(trigger
+    (tab bez))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [NSBezierPath%{TM_C_POINTER=" *"}%{1="path"} = [NSBezierPath bezierPath];
+%{0}])

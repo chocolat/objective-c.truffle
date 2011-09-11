@@ -1,0 +1,8 @@
+(name [Read Defaults Value])
+
+(trigger
+    (tab getprefs))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [[[NSUserDefaults standardUserDefaults] objectForKey:%{1="key"}];])

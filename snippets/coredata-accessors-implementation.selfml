@@ -1,0 +1,21 @@
+(name CoreData)
+
+(trigger
+    (tab cdacc))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [- (%{1="id"})%{2="attribute"}
+{
+	[self willAccessValueForKey:@"%{2=" attribute"}"];
+	%{1="id"} value = [self primitiveValueForKey:@"%{2=" attribute"}"];
+	[self didAccessValueForKey:@"%{2=" attribute"}"];
+	return value;
+}
+
+- (void)set%{2/./\u$0/}:(%{1})aValue
+{
+	[self willChangeValueForKey:@"%{2=" attribute"}"];
+	[self setPrimitiveValue:aValue forKey:@"%{2=" attribute"}"];
+	[self didChangeValueForKey:@"%{2=" attribute"}"];
+}])

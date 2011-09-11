@@ -1,0 +1,8 @@
+(name [NSLog(.., _cmd)])
+
+(trigger
+    (tab log))
+
+(only-in [source.objc meta.scope.implementation, source.objc++ meta.scope.implementation])
+
+(snippet [NSLog(@"%s%{1}", _cmd%{1/[^%]*(%)?.*/(?1:, :\);)/}%{2}%{1/[^%]*(%)?.*/(?1:\);)/}])

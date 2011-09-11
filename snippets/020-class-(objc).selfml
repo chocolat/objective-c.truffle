@@ -1,0 +1,21 @@
+(name Class)
+
+(trigger
+    (tab cl))
+
+(only-in [source.objc, source.objc++ - meta.scope.implementation.objc])
+
+(snippet [@interface %{1="%{TM_FILENAME/\...*$|(^$)/(?1:object)/}"} : %{2="NSObject"}
+{
+}
+@end
+
+@implementation %{1}
+- (id)init
+{
+	if((self = [super init]))
+	{%{0}
+	}
+	return self;
+}
+@end])

@@ -1,0 +1,10 @@
+(name [Lock Focus])
+
+(trigger
+    (tab focus))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [[self lockFocus];
+%{0}
+[self unlockFocus];])

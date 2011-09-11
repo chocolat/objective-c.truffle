@@ -1,0 +1,8 @@
+(name [#import <…>])
+
+(trigger
+    (tab Imp))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [#import <%{1="Cocoa/Cocoa.h"}>])

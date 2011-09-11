@@ -1,0 +1,8 @@
+(name [Write Defaults Value])
+
+(trigger
+    (tab setprefs))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [[[NSUserDefaults standardUserDefaults] setObject:%{1="object"} forKey:%{2="key"}];])

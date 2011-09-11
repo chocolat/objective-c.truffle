@@ -1,0 +1,8 @@
+(name [@selector(…)])
+
+(trigger
+    (tab sel))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [@selector(%{1="method"}:)])

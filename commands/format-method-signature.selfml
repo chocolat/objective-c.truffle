@@ -1,0 +1,27 @@
+(trigger
+    (key [[ctrl]Q]))
+
+(name [Reformat Method Signature])
+
+(only-in meta.function.objc)
+
+(input selection scope)
+
+(output replace-selected)
+
+(save nothing)
+
+(script [#!/usr/bin/env ruby
+text = STDIN.read
+
+text.gsub!(/(\([^\)]+)\s+(\*\))/, '\1\2')
+
+offset_to_first_colon = text.index(':')
+
+argument_triplets = text.scan /(.+?):\s*\((.+?)\)\s*([^\s]*)\s*/
+
+print(argument_triplets.collect do |triplet|
+	sprintf "%#{offset_to_first_colon}s:(%s)%s", triplet[0], triplet[1], triplet[2]
+end.join("\n"))
+
+print $1 if text.match /(\n+)\z/])

@@ -1,0 +1,8 @@
+(name [Bind Property to Key Path of Object])
+
+(trigger
+    (tab bind))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [bind:@"%{2="binding"}" toObject:%{3="observableController"} withKeyPath:@"%{4="keyPath"}" options:%{5="nil"}])

@@ -1,0 +1,20 @@
+(trigger)
+
+(name [Index Headers for Completion])
+
+(only-in [source.objc, source.objc++])
+
+(input nothing word)
+
+(output tooltip)
+
+(save nothing)
+
+(script [if [[ -d "$TM_PROJECT_DIRECTORY" ]]; then
+    find -E "$TM_PROJECT_DIRECTORY" -regex '.*/(_darcs|CVS|\..*)' -prune -or -name '*.h' -print0 | ruby "$TM_BUNDLE_SUPPORT/generateMethodList.rb" -c "$TM_PROJECT_DIRECTORY/.classes.TM_Completions.txt" -m "$TM_PROJECT_DIRECTORY/.methods.TM_Completions.txt" -w "$TM_BUNDLE_SUPPORT/CocoaClassesWithFramework.txt.gz";
+  gzip -f "$TM_PROJECT_DIRECTORY/.methods.TM_Completions.txt";
+  gzip -f "$TM_PROJECT_DIRECTORY/.classes.TM_Completions.txt";
+    echo "indexing complete";
+  else
+    echo "no Project Path found";
+fi])

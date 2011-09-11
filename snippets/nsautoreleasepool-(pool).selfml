@@ -1,0 +1,10 @@
+(name NSAutoreleasePool)
+
+(trigger
+    (tab pool))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [NSAutoreleasePool%{TM_C_POINTER=" *"}pool = [NSAutoreleasePool new];
+%{0}
+[pool drain];])

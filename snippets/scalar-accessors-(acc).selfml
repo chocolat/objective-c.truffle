@@ -1,0 +1,16 @@
+(name [Primitive Type])
+
+(trigger
+    (tab acc))
+
+(only-in [(source.objc | source.objc++) & meta.scope.implementation.objc - meta.function-with-body])
+
+(snippet [- (%{1="unsigned int"})%{2="thing"}
+{
+	return %{3="%{2}"};
+}
+
+- (void)set%{2/./\u$0/}:(%{1="unsigned int"})new%{2/./\u$0/}
+{
+	%{3} = new%{2/./\u$0/};
+}])

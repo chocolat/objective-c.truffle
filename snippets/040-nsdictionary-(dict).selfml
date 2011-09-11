@@ -1,0 +1,8 @@
+(name NSDictionary)
+
+(trigger
+    (tab dict))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [NSMutableDictionary%{TM_C_POINTER=" *"}%{1="dict"} = [NSMutableDictionary dictionary];])

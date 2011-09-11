@@ -1,0 +1,16 @@
+(name [Class Implementation])
+
+(trigger
+    (tab clm))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [@implementation %{1="%{TM_FILENAME/\...*$|(^$)/(?1:object)/}"}
+- (id)init
+{
+	if((self = [super init]))
+	{%{0}
+	}
+	return self;
+}
+@end])

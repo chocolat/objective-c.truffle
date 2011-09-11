@@ -1,0 +1,8 @@
+(name NSArray)
+
+(trigger
+    (tab array))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [NSMutableArray%{TM_C_POINTER=" *"}%{1="array"} = [NSMutableArray array];])

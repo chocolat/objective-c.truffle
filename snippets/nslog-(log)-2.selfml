@@ -1,0 +1,8 @@
+(name [NSLog(…)])
+
+(trigger
+    (tab log))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [NSLog(@"%{1}"%{1/[^%]*(%)?.*/(?1:, :\);)/}%{2}%{1/[^%]*(%)?.*/(?1:\);)/}])

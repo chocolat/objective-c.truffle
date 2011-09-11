@@ -1,0 +1,37 @@
+(detector
+    (extension m)
+    (extension h))
+
+(folding
+    (start [(?x)
+		 /\*\*(?!\*)
+		|^(?![^{]*?//|[^{]*?/\*(?!.*?\*/.*?\{)).*?\{\s*($|//|/\*(?!.*?\*/.*\S))
+		|^@(interface|protocol|implementation)\b
+	])
+    (stop [(?<!\*)\*\*/|^\s*\}|^@end\b]))
+
+(in [source.objc, source.objc++])
+
+(in [meta.protocol-list.objc | meta.inherited-protocol.end.objc | meta.return-type.objc | meta.argument-type.objc]
+    (pair <
+        >
+        (highlight))
+    (pair [(]
+        [)]
+        (highlight)))
+
+(in meta.function.objc
+    (symbol-list
+        (transformation [
+		s/^([-+])\s*\(.*?\)\s*/ $1 /; # strip result type
+		s/:\s*\(.*?\)\s*\w+\s*/:/g;   # strip argument variables
+		s/\s*;?$//g;                  # strip terminating ws + semi-colon
+	])))
+
+(in [(meta.interface-or-protocol.objc | meta.return-type.objc | meta.argument-type.objc) - meta.protocol-list.objc]
+    (pair <
+        >
+        (smart-typing))
+    (pair [(]
+        [)]
+        (smart-typing)))

@@ -1,0 +1,8 @@
+(name [Register for Notification])
+
+(trigger
+    (tab obs))
+
+(only-in [source.objc meta.scope.implementation, source.objc++ meta.scope.implementation])
+
+(snippet [[[NSNotificationCenter defaultCenter] addObserver:%{1="self"} selector:@selector(%{3="%{2})?(.+?)(Notification)?$/\l%{2}/"}}:) name:%{2="NSWindowDidBecomeMainNotification"} object:%{4="nil"}];])

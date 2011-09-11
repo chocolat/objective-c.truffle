@@ -1,0 +1,9 @@
+(name [Interface: Accessors for Object])
+
+(trigger
+    (tab objacc))
+
+(only-in [source.objc meta.scope.interface, source.objc++ meta.scope.interface])
+
+(snippet [- (%{1="id"})%{2="thing"};
+- (void)set%{2/./\u$0/}:(%{1})aValue;])
