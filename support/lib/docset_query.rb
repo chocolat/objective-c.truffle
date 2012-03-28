@@ -7,7 +7,7 @@ require SUPPORT + '/lib/ui'
 
 DOCSET_CMD = "/Developer/usr/bin/docsetutil search -skip-text -query "
 
-DOCSETS = Dir.glob("/Developer/Documentation/DocSets/*.docset")
+DOCSETS = Dir.glob("/{Developer/Documentation/DocSets,Library/Developer/Shared/Documentation/DocSets}/*.docset")
 
 
 Man = Struct.new(:url, :language, :klass)
@@ -67,7 +67,7 @@ def parts_of_reference (docset, ref_str)
 end
 	
 def search_docs (query)
-	results = []
+	results, legacy = [], []
 	DOCSETS.each do |docset|		
 		cmd = DOCSET_CMD + query + ' ' + docset
 		response = `#{cmd}`
@@ -78,17 +78,21 @@ def search_docs (query)
 			when /Documentation set path does not exist/
 				# Docset not installed or moved somewhere else.
 			else
-				response.split("\n").each {|r| results << parts_of_reference(docset, r)}
+				response.split("\n").each do |r|
+					ref = parts_of_reference(docset, r)
+					(docset =~ /Legacy/ ? legacy : results) << ref if ref.exists?
+				end
 		end	
 	end
 	
-	# Remove any duplicated documentation (from different docsets).
+	# Only add legacy documentation if we didn’t find a newer reference — this approach is required because WebObjects has a lot of legacy documentation on Foundation classes
+	legacy.each { |match| results << match unless results.member? match }
 	return results.uniq
 end
 
 def show_document (results, query)
 	if results.nil? || results.empty?
-		return nil
+		TextMate.exit_show_tool_tip "Cannot find documentation for: #{query}"
 	elsif results.length == 1
 		url = results[0].url
 	else
@@ -146,7 +150,6 @@ def search_docs_all(query)
   results = search_docs(query)
   results.reject! { |e| e.url =~ %r{^/usr/share/man/|/ManPages/} }
   results.reject! { |e| e.language =~ /^Java(Script)?$/ }
-  results = results.select { |e| e.exists? }
 
   man = man_page(query)
   results << man if man
@@ -168,11 +171,7 @@ def documentation_for_word
 	end
 
 	results = search_docs_all(query)
-	if results.nil? || results.empty?
-		TextMate.exit_show_tool_tip "Cannot find documentation for: #{query}"
-	else
-		show_document(results, query)
-	end
+	show_document(results, query)
 end
 
 def documentation_for_selector

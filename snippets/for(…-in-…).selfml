@@ -1,0 +1,11 @@
+(name [for(… in …)])
+
+(trigger
+    (tab forin))
+
+(only-in [source.objc, source.objc++])
+
+(snippet [for(%{1="id"} %{2="item"} in %{3="array"})
+{
+	%{0}
+}])
