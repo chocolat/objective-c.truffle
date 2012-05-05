@@ -11,5 +11,4 @@
     ---
     snippet.@selector
     ---
-    command.generate-index
     [command.insert-nslog()-for-current-method])
